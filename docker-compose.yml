@@ -1,0 +1,17 @@
+services:
+  web.mhc:
+    build:
+      context: .
+      dockerfile: ./Dockerfile 
+    env_file:
+      - ./.env
+    command: python main.py
+    volumes:
+      - .:/usr/app
+    ports:
+      - 8000:8000
+
+
+networks:
+  default:
+    name: mhc

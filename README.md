@@ -2,6 +2,11 @@
 
 MHC is a RESTful API application built using FastAPI and SQLAlchemy, designed to provide a robust and efficient backend solution for your projects.
 
+## Prerequisites
+- **Docker**: When running with docker, a docker installation is required, docker can be installed from [docker's official website](https://www.docker.com/products/docker-desktop/)
+- **Python**: When running with bare python, a python installation is required, install python from [python's official website](https://www.python.org/downloads/)
+- **CUDA GPU**: In order to load the chat model, a system with CUDA GPU is required, get [Nvidia toolkit](https://developer.nvidia.com/cuda-downloads)
+
 ## Features
 
 - **FastAPI**: MHC leverages the power of FastAPI, a modern, high-performance web framework for building APIs with Python.
@@ -12,26 +17,20 @@ MHC is a RESTful API application built using FastAPI and SQLAlchemy, designed to
 
 ## Installation
 
-1. Clone the repository:
-
-```bash
-git clone http:clone_url.git
-```
-
-2. Navigate to the project directory:
+1. Navigate to the project directory:
 
 ```bash
 cd mhc
 ```
 
-3. Create a virtual environment (optional but recommended):
+2. Create a virtual environment (optional but recommended):
 
 ```bash
 python -m virtualenv venv
 source venv/bin/activate  # On Windows, use `venv\Scripts\activate`
 ```
 
-4. Install the required dependencies:
+3. Install the required dependencies:
 
 ```bash
 pip install -r requirements.txt
@@ -43,9 +42,9 @@ MHC uses environment variables for configuration. Create a `.env` file in the pr
 
 ## Usage
 
-### Development 
+### Using Python
 
-#### Using Python
+#### Development 
 1. Start the application:
 
 ```bash
@@ -56,19 +55,7 @@ python main.py
 
 3. Explore the available endpoints, send requests, and interact with the API.
 
-#### Using Docker 
-Start by visiting [docker website](https://docs.docker.com/get-docker/) to install docker for your OS, once the installation is complete 
- 
-1. Build the application:
-```sh
-docker-compose -f docker-compose.yml --env-file .env build
-```
-
-2. Start the the application:
-```sh 
-docker-compose -f docker-compose.yml --env-file .env up
-```
-### Production 
+#### Production 
 1. Start the application:
 - The production server uses a combination of gunicorn with uvicorn
 
@@ -77,19 +64,18 @@ gunicorn "main:setup()" --workers 4 --worker-class uvicorn.workers.UvicornWorker
 ```
 The setup function is called first to create the tables appropriately in the database
 
-## Contributing
+### Using Docker  (Production|Development)
+Start by visiting [docker website](https://docs.docker.com/get-docker/) to install docker for your OS, once the installation is complete 
+ 
+1. Build the application:
+```sh
+docker-compose -f gpu-docker-compose.yml --env-file .env build
+```
 
-Contributions to MHC are welcome! Please follow these steps:
-
-1. Fork the repository.
-2. Create a new branch for your feature or bug fix.
-3. Make your changes and commit them with descriptive commit messages.
-4. Push your changes to your forked repository.
-5. Submit a pull request to the main repository.
-
-## License
-
-MHC is released under the [MIT License](https://opensource.org/licenses/MIT).
+2. Start the the application:
+```sh 
+docker-compose -f gpu-docker-compose.yml --env-file .env up
+```
 
 ## Acknowledgments
 
